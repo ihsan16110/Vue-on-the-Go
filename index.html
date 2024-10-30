@@ -12,8 +12,7 @@
 </head>
 <body>
     <nav 
-        class="navbar navbar-expand-lg "
-        :class="navbarClasses"
+        :class="[`navbar-${theme}`,`bg-${theme}`,'navbar','navbar-expand-lg']"
     >
         <!-- Navbar content -->
         <div class="container-fluid">
@@ -30,9 +29,10 @@
                 </li>
               </ul>
               <form class="d-flex">
-                <button class="btn btn-primary"
-                @click.prevent="useDarkNavbar = !useDarkNavbar"
-                >Toggle Nav</button>
+                <button 
+                     class="btn btn-primary"
+                     @click.prevent="theme = theme == 'light' ? 'dark' : 'light'"
+                >Toggle</button>
               </form>
           </div>
     </nav>
@@ -58,7 +58,8 @@
             data() {
                 return {
                     activePage: 0,
-                    useDarkNavbar:false,
+                  //  useDarkNavbar:false,
+                    theme:'light',
                     pages:[
                         {
                             link: {text:'Home',url:'index.html'},
