@@ -11,21 +11,29 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navar-dark bg-dark">
+    <nav 
+        class="navbar navbar-expand-lg "
+        :class="navbarClasses"
+    >
         <!-- Navbar content -->
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">My Vue</a>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="list-style-type: none; padding-left: 0">
+            <a class="navbar-brand" href="#">My VueBar</a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li v-for="(page,index) in pages" class="nav-item" :key="index">
                   <a 
                   class="nav-link activePage==index ? 'active'" 
                   aria-current="page" 
                   :href="page.link.url"
-                  :title="`This link will go to the ${page.link.text}`"
+                  :title="`This link will go to the ${page.link.text} page`"
                   @click.prevent="activePage= index"
                   >{{ page.link.text }}</a>
                 </li>
               </ul>
+              <form class="d-flex">
+                <button class="btn btn-primary"
+                @click.prevent="useDarkNavbar = !useDarkNavbar"
+                >Toggle Nav</button>
+              </form>
           </div>
     </nav>
     
@@ -37,9 +45,20 @@
     <script>
 
         Vue.createApp({
+            computed:{
+                navbarClasses(){
+                    return{
+                        'navbar-light': !this.useDarkNavbar,
+                        'bg-light': !this.useDarkNavbar,
+                        'navbar-dark': this.useDarkNavbar,
+                        'bg-dark': this.useDarkNavbar
+                    }
+                }
+            },
             data() {
                 return {
                     activePage: 0,
+                    useDarkNavbar:false,
                     pages:[
                         {
                             link: {text:'Home',url:'index.html'},
