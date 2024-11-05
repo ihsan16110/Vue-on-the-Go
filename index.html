@@ -11,21 +11,21 @@
 
 </head>
 <body>
-    <!-- <nav 
-        :class="[`navbar-${theme}`,`bg-${theme}`,'navbar','navbar-expand-lg']"
-    >
-        <!-- Navbar content -->
+    
+   <!-- Navbar content -->
   
-
     <navbar
        :pages="pages"
-       :active-page="activePage">
+       :active-page="activePage"
+       :nav-link-click="(index) => activePage= index">
     </navbar>
     
     <page-viewer 
         :page="pages[activePage]">
     </page-viewer>
 
+
+    
     <script>
 
        let app = Vue.createApp({
@@ -80,7 +80,7 @@
 
 
         app.component('navbar',{
-            props: ['pages', 'activePage'],
+            props: ['pages', 'activePage','navLinkClick'],
             template:`
               <nav 
                 :class="[\`navbar-\${theme}\`,\`bg-\${theme}\`,'navbar','navbar-expand-lg']"
@@ -95,7 +95,7 @@
                         aria-current="page" 
                         :href="page.link.url"
                         :title="\`This link will go to the \${page.link.text} page\`"
-                        @click.prevent="activePage= index"
+                        @click.prevent="navLinkClick(index)"
                         >{{ page.link.text }}</a>
                         </li>
                     </ul>
