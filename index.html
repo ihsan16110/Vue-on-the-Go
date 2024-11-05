@@ -17,7 +17,7 @@
     <navbar
        :pages="pages"
        :active-page="activePage"
-       :nav-link-click="(index) => activePage= index">
+       :nav-link-click="(index) => activePage = index">
     </navbar>
     
     <page-viewer 
@@ -25,25 +25,14 @@
     </page-viewer>
 
 
-    
-    <script>
 
+    <script>
        let app = Vue.createApp({
-            computed:{
-                navbarClasses(){
-                    return{
-                        'navbar-light': !this.useDarkNavbar,
-                        'bg-light': !this.useDarkNavbar,
-                        'navbar-dark': this.useDarkNavbar,
-                        'bg-dark': this.useDarkNavbar
-                    }
-                }
-            },
+         
             data() {
                 return {
                     activePage: 0,
                   //  useDarkNavbar:false,
-                    theme:'light',
                     pages:[
                         {
                             link: {text:'Home',url:'index.html'},
@@ -73,7 +62,7 @@
             template:`
                         <div class="container">
                             <h1>{{page.pageTitle}}</h1>
-                            <p>{{page.Content}}</p>
+                            <p>{{page.content}}</p>
                         </div>
             `
         });
